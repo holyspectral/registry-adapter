@@ -119,6 +119,10 @@ func (s *SystemTools) GetSystemInfo() *sysinfo.SysInfo {
 	return &s.info
 }
 
+func (s *SystemTools) GetProcDir() string {
+	return s.procDir
+}
+
 func (s *SystemTools) CallNetNamespaceFunc(pid int, cb NSCallback, params interface{}) error {
 	// Lock the OS Thread so we don't accidentally switch namespaces
 	runtime.LockOSThread()
@@ -710,14 +714,6 @@ func (s *SystemTools) IsOpenshift() (bool, error) {
 	}
 
 	return false, nil
-}
-
-func (s *SystemTools) KillCommandSubtree(pgid int, info string) {
-	if err := syscall.Kill(-pgid, syscall.SIGKILL); err != nil {
-		log.WithFields(log.Fields{"pgid": pgid, "error": err}).Debug("TOOLP: can not signal")
-	} else {
-		log.WithFields(log.Fields{"pgid": pgid}).Debug("TOOLP:")
-	}
 }
 
 //return true if file size over limit

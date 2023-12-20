@@ -85,6 +85,8 @@ It has these top-level messages:
 	CLUSWorkloadIntercept
 	CLUSMeter
 	CLUSMeterArray
+	CLUSWlIDArray
+	ScanTypeMap
 	ScanVulnerability
 	ScanLayerResult
 	ScanModule
@@ -93,6 +95,7 @@ It has these top-level messages:
 	ScanSecretResult
 	ScanSetIdPermLog
 	ScanResult
+	ScanSignatureInfo
 	ScanRunningRequest
 	ScanData
 	ScanAppPackage
