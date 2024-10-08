@@ -1,4 +1,4 @@
-name: dev build
+name: dev ARM64 build
 
 on:
   push:
@@ -28,8 +28,9 @@ jobs:
         with:
           push: true
           file: build/Dockerfile
-          tags: ${{ secrets.DEV_BUILD_REPOSITORY }}:latest
+          tags: ${{ secrets.DEV_BUILD_REPOSITORY }}:latest-arm64
           build-args: |
             COMMIT=${{ github.sha }}
             VERSION=${{ github.ref_name }}
+          platforms: linux/arm64
 
