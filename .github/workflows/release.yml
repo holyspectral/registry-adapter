@@ -16,10 +16,6 @@ jobs:
       # - Read vault secrets in rancher-eio/read-vault-secrets.
       id-token: write
     
-    strategy:
-      matrix:
-        include:
-          - platforms: linux/amd64,linux/arm64
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -47,8 +43,8 @@ jobs:
       uses: rancher/ecm-distro-tools/actions/publish-image@master
       with:
         image: registry-adapter
-        tag: ${{ github.ref_name }}${{ matrix.tag-suffix }}
-        platforms: ${{ matrix.platforms }}
+        tag: ${{ github.ref_name }}
+        platforms: linux/amd64,linux/arm64
 
         public-registry: docker.io
         public-repo: ${{ env.DOCKER_REPO }}

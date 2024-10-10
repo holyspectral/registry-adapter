@@ -19,20 +19,13 @@ ifeq ($(VERSION),)
 		DIRTY = -dirty
 	endif
 
-	# Prioritise DRONE_TAG for backwards compatibility. However, the git tag
-	# command should be able to gather the current tag, except when the git
-	# clone operation was done with "--no-tags".
-	ifneq ($(DRONE_TAG),)
-		GIT_TAG = $(DRONE_TAG)
-	else
-		GIT_TAG = $(shell git tag -l --contains HEAD | head -n 1)
-	endif
 
 	COMMIT = $(shell git rev-parse --short HEAD)
 	VERSION = $(COMMIT)$(DIRTY)
 
 	# Override VERSION with the Git tag if the current HEAD has a tag pointing to
 	# it AND the worktree isn't dirty.
+	GIT_TAG = $(shell git tag -l --contains HEAD | head -n 1)
 	ifneq ($(GIT_TAG),)
 		ifeq ($(DIRTY),)
 			VERSION = $(GIT_TAG)
