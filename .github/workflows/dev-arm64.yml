@@ -8,7 +8,8 @@ on:
 
 jobs:
   build-push:
-    runs-on: ubuntu-latest
+    container: ubuntu:22.04
+    runs-on: ["org-${{ github.repository_owner_id }}-arm64-k8s"]
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
