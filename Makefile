@@ -1,7 +1,7 @@
 RUNNER := docker
 IMAGE_BUILDER := $(RUNNER) buildx
 MACHINE := neuvector
-BUILDX_ARGS ?= --sbom=true --attest type=provenance,mode=max --cache-to type=gha --cache-from type=gha
+BUILDX_ARGS ?= --sbom=true --attest type=provenance,mode=max
 DEFAULT_PLATFORMS := linux/amd64,linux/arm64,linux/x390s,linux/riscv64
 
 COMMIT = $(shell git rev-parse --short HEAD)
