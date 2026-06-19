@@ -1,0 +1,15 @@
+name: test
+on:
+  push:
+
+permissions: {}
+
+jobs:
+  golangci:
+    name: lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check Disk Space
+        run: df -h
